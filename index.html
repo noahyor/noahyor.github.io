@@ -2,7 +2,7 @@
 
 <p>To install CCraft, open Powershell (non-admin), go to the folder you want the install scripts in, and run:  (copy-paste it with right-click) </p>
 
-<p>Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; try { Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://noahyor.github.io/install.ps1 -UseBasicParsing))) -ArgumentList $true } catch { Write-Error $_ }</p>
+<p>Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; try { Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://noahyor.github.io/data/install.ps1 -UseBasicParsing))) -ArgumentList $true } catch { Write-Error $_ }</p>
 
 <p>The IP adress of the server is:</p>
 
