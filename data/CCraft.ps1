@@ -7,11 +7,11 @@ Write-Host ""
 if (!(Test-Path .\data\)) {
     $null = New-Item .\data -ItemType Directory
 }
-if (Test-Path .\data\VERSION) {
+if (Test-Path .\data\VERSION.txt) {
     Write-Host "Checking version..."
-    Invoke-WebRequest https://noahyor.github.io/data/VERSION -OutFile .\data\VERSIONCHECK
-    $LV = Get-Content .\data\VERSION
-    $RV = Get-Content .\data\VERSIONCHECK
+    Invoke-WebRequest https://noahyor.github.io/data/VERSION.txt -OutFile .\data\VERSIONCHECK.txt
+    $LV = Get-Content .\data\VERSION.txt
+    $RV = Get-Content .\data\VERSIONCHECK.txt
     if ($LV == "DEV") {
         Write-Host "Done! Status: AHEAD; Version: DEV"
     } elseif ($LV == $RV) {
@@ -21,7 +21,7 @@ if (Test-Path .\data\VERSION) {
         Write-Host "Updating..."
         Remove-Item .\data\mods\
     }
-    Remove-Item .\data\VERSIONCHECK
+    Remove-Item .\data\VERSIONCHECK.txt
 }
 if (!(Test-Path .\data\mods\)) {
     Write-Host "Downloading mods, this will take a few minutes..."
@@ -46,7 +46,7 @@ if (!(Test-Path .\setup.ps1)) {
     Copy-Item .\data\scripts\setup.ps1 .\setup.ps1
 }
 .\setup.ps1
-if (!(Test-Path .\data\VERSION)) {
-    Invoke-WebRequest https://noahyor.github.io/data/VERSION -OutFile .\data\VERSION
+if (!(Test-Path .\data\VERSION.txt)) {
+    Invoke-WebRequest https://noahyor.github.io/data/VERSION.txt -OutFile .\data\VERSION.txt
 }
 Remove-Item .\install.ps1
