@@ -14,12 +14,12 @@ if (Test-Path .\data\VERSION.txt) {
     Invoke-WebRequest https://noahyor.github.io/data/VERSION.txt -OutFile .\data\VERSIONCHECK.txt
     $LV = Get-Content .\data\VERSION.txt
     $RV = Get-Content .\data\VERSIONCHECK.txt
-    if ($LV -eq "DEV") {
-        Write-Host "Done! Status: AHEAD; Version: DEV"
+    if ($LV -ccontains "DEV") {
+        Write-Host "Done! Status: AHEAD; Version: {0}" -f $LV
     } elseif ($LV -eq $RV) {
-        Write-Host "Done! Status: UP-TO-DATE; Version: {}" $LV
+        Write-Host "Done! Status: UP-TO-DATE; Version: {0}" -f $LV
     } else {
-        Write-Host "Done! Status: BEHIND; Version: {} -> {}" $LV $RV
+        Write-Host "Done! Status: BEHIND; Version: {0} -> {1}" -f $LV $RV
         Write-Host "Updating..."
         Remove-Item .\data\mods\
     }
