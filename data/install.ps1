@@ -1,4 +1,4 @@
-New-Item .\data -ItemType Directory
+Out-Null (New-Item .\data -ItemType Directory)
 Write-Output "Downloading mods, this may take some time..."
 Invoke-WebRequest https://noahyor.github.io/data/mods.zip -OutFile .\data\mods.zip
 Write-Output "Done!"
