@@ -25,17 +25,21 @@ if (Test-Path .\data\VERSION) {
 if (!(Test-Path .\data\mods\)) {
     Write-Host "Downloading mods, this will take a few minutes..."
     Invoke-WebRequest https://noahyor.github.io/data/mods.zip -OutFile .\data\mods.zip
-    Write-Host "Done!"
+    Write-Host "Decompressing..."
     Expand-Archive .\data\mods.zip .\data\
+    Write-Host "Removing .zip ..."
     Remove-Item .\data\mods.zip
+    Write-Host "Done!"
 }
 
 if (!(Test-Path .\data\scripts\)) {
-    Write-Host "Downloading Scripts..."
+    Write-Host "Downloading scripts..."
     Invoke-WebRequest https://noahyor.github.io/data/scripts.zip -OutFile .\data\scripts.zip
-    Write-Host "Done!"
+    Write-Host "Decompressing..."
     Expand-Archive .\data\scripts.zip .\data\
+    Write-Host "Removing .zip ..."
     Remove-Item .\data\scripts.zip
+    Write-Host "Done!"
 }
 if (!(Test-Path .\setup.ps1)) {
     Copy-Item .\data\scripts\setup.ps1 .\setup.ps1
