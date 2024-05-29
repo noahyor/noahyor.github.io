@@ -21,6 +21,7 @@ if (Test-Path .\data\VERSION) {
         Write-Host "Updating..."
         Remove-Item .\data\mods\
     }
+    Remove-Item .\data\VERSIONCHECK
 }
 if (!(Test-Path .\data\mods\)) {
     Write-Host "Downloading mods, this will take a few minutes..."
