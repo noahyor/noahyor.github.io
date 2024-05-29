@@ -7,6 +7,8 @@ Invoke-WebRequest https://noahyor.github.io/data/scripts.zip -OutFile .\data\scr
 Write-Output "Done!"
 Expand-Archive .\data\mods.zip .\data\
 Expand-Archive .\data\scripts.zip .\data\
+Remove-Item .\data\mods.zip
+Remove-Item .\data\scripts.zip
 Copy-Item .\data\scripts\setup.ps1 .\setup.ps1
 .\setup.ps1
 Remove-Item .\install.ps1
