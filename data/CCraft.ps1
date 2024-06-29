@@ -104,6 +104,3 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
 
 # Set the current version
 Invoke-WebRequest https://noahyor.github.io/data/VERSION.txt -OutFile ~\AppData\Roaming\.minecraft\.CCraft\VERSION.txt
-
-# Delete self
-Remove-Item .\CCraft.ps1
