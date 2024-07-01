@@ -6,6 +6,7 @@ You shall abide by these rules unless specified otherwise:
 4. Pranks are fine unless they break other rules.  
 5. Don't be a jerk.  
 6. No greifing.  
+  
 # 2. Court  
 The court shall be as follows:  
 1. The accusing party shall sit on the right.  
@@ -23,6 +24,7 @@ The court shall be as follows:
 	4. The accused shall provide counter-evidence.  
 	5. The judges shall ask questions.  
 	6. The three prior steps shall be repeated until the court is dismissed by 2/3rds vote, or both judges have agreed on a verdict.  
+  
 # 3. Punishments  
 These shall be the punishments for being found guilty in court:  
 1. For misconduct, in order of number of times committed:  
@@ -42,11 +44,13 @@ These shall be the punishments for being found guilty in court:
 	1. Temporary Ban (one day to one week in length)  
 	2. Longer Temporary Ban  
 	3. Permanent Ban (*see* section 4)  
+  
 # 4. Bans  
 These shall be the rules regarding bans (*see* section 3):  
 1. Bans must be at minimum one day in length.  
 2. During a ban, the banned player may appeal a total of three times.  
 3. An appeal shall be a private conversation between tauisthecircle, Mini_rex42, and the appealing person. They shall decide whether the person will remain banned or will be unbanned.  
+  
 # 5. Groups  
 These shall be the rules regarding the operation of groups:  
 1. A group must have a representative.  
@@ -58,6 +62,7 @@ These shall be the rules regarding the operation of groups:
 6. The representatives need to agree upon a new representative and a set of rules.  
 7. Groups may split and neither can prevent such action.  
 8. Any groups that split cannot declare war on each other for one week. (*see* section 6)  
+  
 # 6. War  
 These shall be the rules regarding warfare:  
 1. Groups may declare war on each other whenever they wish, unless specified otherwise (*see* section 5.8)  
@@ -65,6 +70,7 @@ These shall be the rules regarding warfare:
 3. While in war, section 1.1, 1.2, and 1.6 do not apply.  
 4. War may be resolved by treaty (*see* section 7) or surrender only.  
 5. Surrendering will automatically make the war goals of the victor reality.  
+  
 # 7. Treaties  
 These shall be the rules regarding treaties:  
 1. A treaty shall be a formal agreement between groups.  
@@ -75,6 +81,7 @@ These shall be the rules regarding treaties:
 4. During this meeting, the groups shall state their agreed treaty.  
 5. Treaties must be upheld for the agreed amount of time.  
 6. Not doing so shall expose you to legal condemnation. (*see* section 2 and 3.3)  
+  
 # 8. Debt  
 These shall be the rules regarding indebtedness:  
 1. If you are in debt, you must pay your debt as soon as possible, even if not all at once.  
