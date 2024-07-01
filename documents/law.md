@@ -1,11 +1,11 @@
 # 1. Conduct
-You shall abide by these rules unless specified otherwise:
-	1. No PVP unless all parties involved agree to prior. (with the exception of warfare, *see* section 6)
-	2. No stealing other player's things.
-	3. Don't be mean to anyone.
-	4. Pranks are fine unless they break other rules.
-	5. Don't be a jerk.
-	6. No greifing.
+You shall abide by these rules unless specified otherwise:  
+	1. No PVP unless all parties involved agree to prior. (with the exception of warfare, *see* section 6)  
+	2. No stealing other player's things.  
+	3. Don't be mean to anyone.  
+	4. Pranks are fine unless they break other rules.  
+	5. Don't be a jerk.  
+	6. No greifing.  
 # 2. Court
 The court shall be as follows:
 	1. The accusing party shall sit on the right.
