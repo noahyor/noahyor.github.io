@@ -67,9 +67,11 @@ These shall be the rules regarding the operation of groups:
 These shall be the rules regarding warfare:  
 1. Groups may declare war on each other whenever they wish, unless specified otherwise (*see* section 5.8)  
 2. The groups who declare war must state their war goals clearly to all involved and to the moderators (tauisthecircle and Mini_rex42)  
-3. While in war, section 1.1, 1.2, and 1.6 do not apply.  
-4. War may be resolved by treaty (*see* section 7) or surrender only.  
-5. Surrendering will automatically make the war goals of the victor reality.  
+3. While in war, section 1.2 and 1.6 do not apply.  
+4. Territory of other players cannot be destroyed while they are offline.  
+5. Otherwise, destruction of teritory is unfettered.  
+6. War may be resolved by treaty (*see* section 7) or surrender only.  
+7. Surrendering will automatically make the war goals of the victor reality.  
   
 # 7. Treaties  
 These shall be the rules regarding treaties:  
