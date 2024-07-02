@@ -102,7 +102,6 @@ if (!(Test-Path .\data\mods\)) {
     Move-Item .\data\mods2\*.jar .\data\mods\
     Remove-Item .\data\mods1.zip
     Remove-Item .\data\mods2.zip
-    Write-Host "Done!"
 }
 
 # Download scripts, if they are not present
@@ -117,18 +116,14 @@ if (!(Test-Path .\data\scripts\)) {
 if (!(Test-Path .\data\shaderpacks\)) {
     Write-Host "Downloading Shaderpacks..."
     Invoke-WebRequest https://noahyor.github.io/data/shaderpacks.zip -OutFile .\data\shaderpacks.zip
-    Write-Host "Decompressing..."
     Expand-Archive .\data\shaderpacks.zip .\data\
-    Write-Host "Removing .zip ..."
     Remove-Item .\data\shaderpacks.zip
-    Write-Host "Done!"
 }
 
 # Install CCraft if not already installed.
 if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     Write-Host "Downloading NeoForge Installer..."
     Invoke-WebRequest https://maven.neoforged.net/releases/net/neoforged/forge/1.20.1-47.1.106/forge-1.20.1-47.1.106-installer.jar -OutFile ".\forge-1.20.1-47.1.106-installer.jar"
-    Write-Host "Done!"
     Write-Host "Installing NeoForge..."
     Write-Host "Please press 'Proceed' on the next screen."
     pause
