@@ -61,19 +61,43 @@ if (Test-Path ~\AppData\Roaming\.minecraft\.CCraft\VERSION.txt) {
     Remove-Item ~\AppData\Roaming\.minecraft\.CCraft\VERSIONCHECK.txt
 }
 
+function DownloadFile($url, $targetFile, $downloadString, $finishString) {
+   $uri = New-Object "System.Uri" "$url"
+   $request = [System.Net.HttpWebRequest]::Create($uri)
+   $request.set_Timeout(15000) #15 second timeout
+   $response = $request.GetResponse()
+   $totalLength = [System.Math]::Floor($response.get_ContentLength()/1024)
+   $responseStream = $response.GetResponseStream()
+   $targetStream = New-Object -TypeName System.IO.FileStream -ArgumentList $targetFile, Create
+   $buffer = new-object byte[] 1000KB
+   $count = $responseStream.Read($buffer,0,$buffer.length)
+   $downloadedBytes = $count
+
+   while ($count -gt 0)
+   {
+       $targetStream.Write($buffer, 0, $count)
+       $count = $responseStream.Read($buffer,0,$buffer.length)
+       $downloadedBytes = $downloadedBytes + $count
+       Write-Progress -activity $downloadString -status "Downloaded ($([System.Math]::Floor($downloadedBytes/1024))K of $($totalLength)K): " -PercentComplete ((([System.Math]::Floor($downloadedBytes/1024)) / $totalLength)  * 100)
+   }
+
+   Write-Progress -activity $finishString
+
+   $targetStream.Flush()
+   $targetStream.Close()
+   $targetStream.Dispose()
+   $responseStream.Dispose()
+}
+
 # Download mods, if they are not present
 if (!(Test-Path .\data\mods\)) {
     Write-Host "Please do not cancel while download is in progress."
     Write-Host "Downloading mods, this will take a few minutes..."
     Write-Host "Feel free to grab a snack at this time."
-    Write-Host "Downloading 1 of 2"
-    Invoke-WebRequest https://noahyor.github.io/data/mods1.zip -OutFile .\data\mods1.zip
-    Write-Host "Downloading 2 of 2"
-    Invoke-WebRequest https://noahyor.github.io/data/mods2.zip -OutFile .\data\mods2.zip
-    Write-Host "Decompressing ..."
+    DownloadFile "https://noahyor.github.io/data/mods1.zip" ".\data\mods1.zip" "Downloading Mods (1 of 2)" ""
+    DownloadFile "https://noahyor.github.io/data/mods2.zip" ".\data\mods2.zip" "Downloading Mods (2 of 2)" ""
     Expand-Archive .\data\mods1.zip .\data\ -Force
     Expand-Archive .\data\mods2.zip .\data\ -Force
-    Write-Host "Removing .zip(s) ..."
     Remove-Item .\data\mods1.zip
     Remove-Item .\data\mods2.zip
     Write-Host "Done!"
@@ -83,9 +107,7 @@ if (!(Test-Path .\data\mods\)) {
 if (!(Test-Path .\data\scripts\)) {
     Write-Host "Downloading scripts..."
     Invoke-WebRequest https://noahyor.github.io/data/scripts.zip -OutFile .\data\scripts.zip
-    Write-Host "Decompressing..."
     Expand-Archive .\data\scripts.zip .\data\
-    Write-Host "Removing .zip ..."
     Remove-Item .\data\scripts.zip
     Write-Host "Done!"
 }
@@ -132,8 +154,8 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     Copy-Item ".\data\shaderpacks\*.zip" "~\AppData\Roaming\.minecraft\shaderpacks\"
     Write-Host "Setup is now complete."
     Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -BackgroundColor Yellow
-    Write-Host "To do so, open the Installations tab in the launcher and select Forge."
-    Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ."
+    Write-Host "To do so, open the Installations tab in the launcher and select Forge." -BackgroundColor Yellow
+    Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ." -BackgroundColor Yellow
     Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge."
     Write-Host "It will take a minute or two to load. Please be patient."
     pause
