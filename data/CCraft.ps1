@@ -96,12 +96,15 @@ if (!(Test-Path .\data\mods\)) {
     Write-Host "Feel free to grab a snack at this time."
     DownloadFile "https://noahyor.github.io/data/mods1.zip" ".\data\mods1.zip" "Downloading Mods (1 of 2)" "Done!"
     DownloadFile "https://noahyor.github.io/data/mods2.zip" ".\data\mods2.zip" "Downloading Mods (2 of 2)" "Done!"
-    Expand-Archive .\data\mods1.zip .\data\
-    Expand-Archive .\data\mods2.zip .\data\
-    Move-Item .\data\mods1\*.jar .\data\mods\
-    Move-Item .\data\mods2\*.jar .\data\mods\
+    Expand-Archive .\data\mods1.zip .\data\ -Force
+    Expand-Archive .\data\mods2.zip .\data\ -Force
+    $null = New-Item .\data\mods\ -ItemType Directory
+    Move-Item .\data\mods1\*.jar .\data\mods\ -Force
+    Move-Item .\data\mods2\*.jar .\data\mods\ -Force
     Remove-Item .\data\mods1.zip
     Remove-Item .\data\mods2.zip
+    Remove-Item .\data\mods1\
+    Remove-Item .\data\mods2\
 }
 
 # Download scripts, if they are not present
@@ -136,6 +139,7 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
         Write-Host "Previously used mods have been detected."
         if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\mods_old)) {
             $null = New-Item ~\AppData\Roaming\.minecraft\.CCraft\mods_old -ItemType Directory
+            Copy-Item .\data\scripts\restore_other_mods.ps1 .\
         }
         Move-Item "~\AppData\Roaming\.minecraft\mods\*.jar" "~\AppData\Roaming\.minecraft\.CCraft\mods_old\"
         Write-Host "Other mods have been moved to ~\AppData\Roaming\.minecraft\.CCraft\mods_old\ ."
@@ -152,10 +156,9 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -ForegroundColor Yellow
     Write-Host "To do so, open the Installations tab in the launcher and select Forge." -ForegroundColor Yellow
     Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ." -ForegroundColor Yellow
-    Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge." -
-    Write-Host "It will take a minute or two to load. Please be patient."
+    Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge."
+    Write-Host "It will take a minute or two to load. Please watch the cute fox run in circles in the bottom-left corner."
     pause
-    Copy-Item .\data\scripts\restore_other_mods.ps1 .\
 }
 
 # Set the current version
