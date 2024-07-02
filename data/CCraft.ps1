@@ -66,11 +66,16 @@ if (!(Test-Path .\data\mods\)) {
     Write-Host "Please do not cancel while download is in progress."
     Write-Host "Downloading mods, this will take a few minutes..."
     Write-Host "Feel free to grab a snack at this time."
-    Invoke-WebRequest https://noahyor.github.io/data/mods.zip -OutFile .\data\mods.zip
-    Write-Host "Decompressing..."
-    Expand-Archive .\data\mods.zip .\data\
-    Write-Host "Removing .zip ..."
-    Remove-Item .\data\mods.zip
+    Write-Host "Downloading 1 of 2"
+    Invoke-WebRequest https://noahyor.github.io/data/mods1.zip -OutFile .\data\mods1.zip
+    Write-Host "Downloading 2 of 2"
+    Invoke-WebRequest https://noahyor.github.io/data/mods2.zip -OutFile .\data\mods2.zip
+    Write-Host "Decompressing ..."
+    Expand-Archive .\data\mods1.zip .\data\ -Force
+    Expand-Archive .\data\mods2.zip .\data\ -Force
+    Write-Host "Removing .zip(s) ..."
+    Remove-Item .\data\mods1.zip
+    Remove-Item .\data\mods2.zip
     Write-Host "Done!"
 }
 
@@ -96,17 +101,12 @@ if (!(Test-Path .\data\shaderpacks\)) {
     Write-Host "Done!"
 }
 
-# Copy the install script, if not present
-if (!(Test-Path .\setup.ps1)) {
-    Copy-Item .\data\scripts\setup.ps1 .\setup.ps1
-}
-
 # Install CCraft if not already installed.
 if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     Write-Host "Downloading NeoForge Installer..."
     Invoke-WebRequest https://maven.neoforged.net/releases/net/neoforged/forge/1.20.1-47.1.106/forge-1.20.1-47.1.106-installer.jar -OutFile ".\forge-1.20.1-47.1.106-installer.jar"
     Write-Host "Done!"
-    Write-Host "Installing Forge..."
+    Write-Host "Installing NeoForge..."
     Write-Host "Please press 'Proceed' on the next screen."
     pause
     java -jar .\forge-1.20.1-47.1.106-installer.jar
@@ -131,7 +131,7 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     }
     Copy-Item ".\data\shaderpacks\*.zip" "~\AppData\Roaming\.minecraft\shaderpacks\"
     Write-Host "Setup is now complete."
-    Write-Warning "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM."
+    Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -BackgroundColor Yellow
     Write-Host "To do so, open the Installations tab in the launcher and select Forge."
     Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ."
     Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge."
