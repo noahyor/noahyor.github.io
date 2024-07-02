@@ -125,14 +125,18 @@ if (!(Test-Path .\data\shaderpacks\)) {
 
 # Install CCraft if not already installed.
 if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
+    Write-Host "Please close the Minecraft launcher." -ForegroundColor DarkCyan
     Write-Host "Downloading NeoForge Installer..."
     Invoke-WebRequest https://maven.neoforged.net/releases/net/neoforged/forge/1.20.1-47.1.106/forge-1.20.1-47.1.106-installer.jar -OutFile ".\forge-1.20.1-47.1.106-installer.jar"
     Write-Host "Installing NeoForge..."
     Write-Host "Please press 'Proceed' on the next screen."
     pause
     java -jar .\forge-1.20.1-47.1.106-installer.jar
-    Write-Host "Moving files around..."
     Start-Sleep 2
+    $launcherProfilesJson = Get-Contents ~\AppData\Roaming\.minecraft\launcher_profiles.json -Raw | ConvertFrom-Json
+    $launcherProfilesJson.profiles.forge.javaArgs = "-Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent\u003d20 -XX:G1ReservePercent\u003d20 -XX:MaxGCPauseMillis\u003d50 -XX:G1HeapRegionSize\u003d32M"
+    $launcherProfilesJson | ConvertTo-Json -Depth 4 | Out-File ~\AppData\Roaming\.minecraft\launcher_profiles.json
+    Write-Host "Moving files around..."
     Remove-Item .\forge-1.20.1-47.1.106-installer.jar
     $null = New-Item ~\AppData\Roaming\.minecraft\.CCraft -ItemType Directory
     if (Test-Path ~\AppData\Roaming\.minecraft\mods\*.jar) {
@@ -153,12 +157,10 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     }
     Copy-Item ".\data\shaderpacks\*.zip" "~\AppData\Roaming\.minecraft\shaderpacks\"
     Write-Host "Setup is now complete."
-    Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -ForegroundColor Yellow
-    Write-Host "To do so, open the Installations tab in the launcher and select Forge." -ForegroundColor Yellow
-    Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ." -ForegroundColor Yellow
     Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge."
     Write-Host "It will take a minute or two to load. Please watch the cute fox run in circles in the bottom-left corner."
     pause
+    Clear-Host
 }
 
 # Set the current version
