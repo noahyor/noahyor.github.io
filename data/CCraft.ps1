@@ -94,10 +94,12 @@ if (!(Test-Path .\data\mods\)) {
     Write-Host "Please do not cancel while download is in progress."
     Write-Host "Downloading mods, this will take a few minutes..."
     Write-Host "Feel free to grab a snack at this time."
-    DownloadFile "https://noahyor.github.io/data/mods1.zip" ".\data\mods1.zip" "Downloading Mods (1 of 2)" ""
-    DownloadFile "https://noahyor.github.io/data/mods2.zip" ".\data\mods2.zip" "Downloading Mods (2 of 2)" ""
-    Expand-Archive .\data\mods1.zip .\data\ -Force
-    Expand-Archive .\data\mods2.zip .\data\ -Force
+    DownloadFile "https://noahyor.github.io/data/mods1.zip" ".\data\mods1.zip" "Downloading Mods (1 of 2)" "Done!"
+    DownloadFile "https://noahyor.github.io/data/mods2.zip" ".\data\mods2.zip" "Downloading Mods (2 of 2)" "Done!"
+    Expand-Archive .\data\mods1.zip .\data\
+    Expand-Archive .\data\mods2.zip .\data\
+    Move-Item .\data\mods1\*.jar .\data\mods\
+    Move-Item .\data\mods2\*.jar .\data\mods\
     Remove-Item .\data\mods1.zip
     Remove-Item .\data\mods2.zip
     Write-Host "Done!"
@@ -109,7 +111,6 @@ if (!(Test-Path .\data\scripts\)) {
     Invoke-WebRequest https://noahyor.github.io/data/scripts.zip -OutFile .\data\scripts.zip
     Expand-Archive .\data\scripts.zip .\data\
     Remove-Item .\data\scripts.zip
-    Write-Host "Done!"
 }
 
 # Download Shaderpacks, if they are not present
@@ -153,10 +154,10 @@ if (!(Test-Path ~\AppData\Roaming\.minecraft\.CCraft\)) {
     }
     Copy-Item ".\data\shaderpacks\*.zip" "~\AppData\Roaming\.minecraft\shaderpacks\"
     Write-Host "Setup is now complete."
-    Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -BackgroundColor Yellow
-    Write-Host "To do so, open the Installations tab in the launcher and select Forge." -BackgroundColor Yellow
-    Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ." -BackgroundColor Yellow
-    Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge."
+    Write-Host "However, it is highly recomended to give Minecraft 4 Gigabytes of RAM." -ForegroundColor Yellow
+    Write-Host "To do so, open the Installations tab in the launcher and select Forge." -ForegroundColor Yellow
+    Write-Host "Then, open the 'More Options' dropdown and change the part near the begining from -Xmx2G to -Xmx4G ." -ForegroundColor Yellow
+    Write-Host "To play CCraft, open the Minecraft Launcher, then in the dropdown next to the Play button, select Forge." -
     Write-Host "It will take a minute or two to load. Please be patient."
     pause
     Copy-Item .\data\scripts\restore_other_mods.ps1 .\
